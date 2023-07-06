@@ -27,7 +27,7 @@ def obtener_edad():
     return 2017-agno-1
 
 def obtener_direccion():
-    pais = input("Cuentanos, en que país vives?")
+    pais = input("Cuentanos, en que país naciste?")
     return pais
 def obtener_estatura():
     estatura = float(input("Cuéntame más de ti, para agregarlo a tu perfil. ¿Cuánto mides? Dímelo en metros. "))
@@ -48,9 +48,9 @@ def mostrar_perfil(nombre, edad, metros, centimetros, num_amigos, genero, pais):
     print("Nombre:   ", nombre)
     print("Edad:     ", edad, "años")
     print("Estatura: ", metros, "m y ", centimetros, "centímetros")
-    print("Tu genero es",genero)
+    print("Genero:   ",genero)
     print("Amigos:   ", num_amigos)
-    print("Vives en", pais)
+    print("Naciste:   ", pais)
     print("--------------------------------------------------")
 
 def opcion_menu():
