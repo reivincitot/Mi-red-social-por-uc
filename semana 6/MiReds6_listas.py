@@ -49,16 +49,16 @@ while opcion != 0:
         Red.mostrar_perfil(nombre, edad, estatura_m,
                            estatura_cm, sexo, pais, amigos)
     elif opcion == 5:
-       add_friend = Red.agregar_amigos(amigos)
-       amigos.append(add_friend)
+        add_friend = Red.agregar_amigos(amigos)
+        amigos.append(add_friend)
+
     elif opcion == 6:
-        pass
+        Red.mostrar_estados_amigos(amigos)
 
     elif opcion == 0:
         print("Has decidido salir. Guardando perfil en ", nombre+".user")
         Red.escribir_usuario(nombre, edad, estatura_m,
                              estatura_cm, sexo, pais, amigos, estado, muro)
-        print("Archivo", nombre+".user", "guardado")
 
 print("Gracias por usar Mi Red. Â¡Hasta pronto!")
 

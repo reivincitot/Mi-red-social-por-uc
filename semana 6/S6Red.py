@@ -1,5 +1,6 @@
-#El mÃ³dulo 'os' nos permitirÃ¡ consultar si un archivo existe.
+# El mÃ³dulo 'os' nos permitirÃ¡ consultar si un archivo existe.
 import os
+
 
 def mostrar_bienvenida():
     print("Bienvenido a ... ")
@@ -12,19 +13,24 @@ def mostrar_bienvenida():
 
     """)
 
+
 def obtener_nombre():
     nombre = input("Para empezar, dime como te llamas. ")
     return nombre
+
 
 def obtener_edad():
     agno = int(input("Para preparar tu perfil, dime en quÃ© aÃ±o naciste. "))
     return 2017-agno-1
 
+
 def obtener_estatura():
-    estatura = float(input("CuÃ©ntame mÃ¡s de ti, para agregarlo a tu perfil. Â¿CuÃ¡nto mides? DÃ­melo en metros. "))
+    estatura = float(input(
+        "CuÃ©ntame mÃ¡s de ti, para agregarlo a tu perfil. Â¿CuÃ¡nto mides? DÃ­melo en metros. "))
     metros = int(estatura)
-    centimetros = int( (estatura - metros)*100 )
+    centimetros = int((estatura - metros)*100)
     return (metros, centimetros)
+
 
 def obtener_sexo():
     sexo = input("Por favor, ingresa tu sexo (M=Masculino, F=Femenino): ")
@@ -32,12 +38,15 @@ def obtener_sexo():
         sexo = input("Por favor, ingresa tu sexo (M=Masculino, F=Femenino): ")
     return sexo
 
+
 def obtener_pais():
     pais = input("Indica tu paÃ­s de nacimiento: ")
     return pais
 
+
 def obtener_lista_amigos():
-    linea = input("Muy bien. Finalmente, escribe una lista con los nombres de tus amigos, separados por una ',': ")
+    linea = input(
+        "Muy bien. Finalmente, escribe una lista con los nombres de tus amigos, separados por una ',': ")
     amigos = linea.split(",")
     return amigos
 
@@ -50,8 +59,9 @@ def mostrar_perfil(nombre, edad, estatura_m, estatura_cm, sexo, pais, amigos):
     print("Sexo:     ", sexo)
     print("PaÃ­s:    ", pais)
     print("Amigos:   ", len(amigos))
-    print("Lista de amigos: ",amigos)
+    print("Lista de amigos: ", amigos)
     print("--------------------------------------------------")
+
 
 def opcion_menu():
     print("Acciones disponibles:")
@@ -60,16 +70,19 @@ def opcion_menu():
     print("  3. Mostrar los datos de perfil")
     print("  4. Actualizar el perfil de usuario")
     print("  5. Agregar un usuario a tu lista de amigos")
+    print("  6. Ver estado de tus amigos")
     print("  0. Salir")
     opcion = int(input("Ingresa una opciÃ³n: "))
-    while opcion < 0 or opcion > 5:
+    while opcion < 0 or opcion > 6:
         print("No conozco la opciÃ³n que has ingresado. IntÃ©ntalo otra vez.")
         opcion = int(input("Ingresa una opciÃ³n: "))
     return opcion
 
+
 def obtener_mensaje():
     mensaje = input("Ahora vamos a publicar un mensaje. Â¿QuÃ© piensas hoy? ")
     return mensaje
+
 
 def mostrar_mensaje(origen, mensaje):
     print("--------------------------------------------------")
@@ -77,53 +90,58 @@ def mostrar_mensaje(origen, mensaje):
     print("--------------------------------------------------")
 
 
-#Muestra los mensajes recibidos
+# Muestra los mensajes recibidos
 def mostrar_muro(muro):
-     print("------ MURO ("+str(len(muro))+" mensajes) ---------")
-     for mensaje in muro:
-         print(mensaje)
-     print("--------------------------------------------------")
+    print("------ MURO ("+str(len(muro))+" mensajes) ---------")
+    for mensaje in muro:
+        print(mensaje)
+    print("--------------------------------------------------")
 
-#Publica un mensaje en el timeline personal y en el de los amigos
+# Publica un mensaje en el timeline personal y en el de los amigos
+
+
 def publicar_mensaje(origen, amigos, mensaje, muro):
     print("--------------------------------------------------")
     print(origen, "dice:", mensaje)
     print("--------------------------------------------------")
-    #Agrega el mensaje al final del timeline local
+    # Agrega el mensaje al final del timeline local
     muro.append(mensaje)
-    #Agrega, al final del archivo de cada amigo, el mensaje publicado
+    # Agrega, al final del archivo de cada amigo, el mensaje publicado
     for amigo in amigos:
         if existe_archivo(amigo+".user"):
-            archivo = open(amigo+".user","a")
+            archivo = open(amigo+".user", "a")
             archivo.write(origen+":"+mensaje+"\n")
             archivo.close()
+
 
 def existe_archivo(ruta):
     return os.path.isfile(ruta)
 
+
 def leer_usuario(nombre):
-    archivo_usuario = open(nombre+".user","r")
+    archivo_usuario = open(nombre+".user", "r")
     nombre = archivo_usuario.readline().rstrip()
     edad = int(archivo_usuario.readline())
     estatura = float(archivo_usuario.readline())
     estatura_m = int(estatura)
-    estatura_cm = int( (estatura - estatura_m)*100 )
+    estatura_cm = int((estatura - estatura_m)*100)
     sexo = archivo_usuario.readline().rstrip()
     pais = archivo_usuario.readline().rstrip()
     amigos = archivo_usuario.readline().rstrip().split(",")
     estado = archivo_usuario.readline().rstrip()
-    #Lee el 'muro'. Esto es, todos los mensajes que han sido publicados en el timeline del usuario.
+    # Lee el 'muro'. Esto es, todos los mensajes que han sido publicados en el timeline del usuario.
     muro = []
     mensaje = archivo_usuario.readline().rstrip()
     while mensaje != "":
         muro.append(mensaje)
         mensaje = archivo_usuario.readline().rstrip()
-    #Una vez que hemos leido los datos del usuario no debemos olvidar cerrar el archivo
+    # Una vez que hemos leido los datos del usuario no debemos olvidar cerrar el archivo
     archivo_usuario.close()
-    return(nombre, edad, estatura_m, estatura_cm, sexo, pais, amigos, estado, muro)
+    return (nombre, edad, estatura_m, estatura_cm, sexo, pais, amigos, estado, muro)
+
 
 def escribir_usuario(nombre, edad, estatura_m, estatura_cm, sexo, pais, amigos, estado, muro):
-    archivo_usuario = open(nombre+".user","w")
+    archivo_usuario = open(nombre+".user", "w")
     archivo_usuario.write(nombre+"\n")
     archivo_usuario.write(str(edad)+"\n")
     archivo_usuario.write(str(estatura_m + estatura_cm/100)+"\n")
@@ -131,13 +149,34 @@ def escribir_usuario(nombre, edad, estatura_m, estatura_cm, sexo, pais, amigos, 
     archivo_usuario.write(pais+"\n")
     archivo_usuario.write(",".join(amigos)+"\n")
     archivo_usuario.write(estado+"\n")
-    #Escribe el 'timeline' en el archivo, a continuaciÃ³n del Ãºltimo estado
+    # Escribe el 'timeline' en el archivo, a continuaciÃ³n del Ãºltimo estado
     for mensaje in muro:
         archivo_usuario.write(mensaje+"\n")
-    #Una vez que hemos escrito todos los datos del usuario en el archivo, no debemos olvidar cerrarlo
+    # Una vez que hemos escrito todos los datos del usuario en el archivo, no debemos olvidar cerrarlo
     archivo_usuario.close()
+
 
 def agregar_amigos(leer_usuario):
     add_friend = input("Indicame el nombre de la persona que deseas agregar: ")
     add_friend = add_friend.rstrip()
     return add_friend
+
+
+# def obtener_estados(mostrar_muro):
+#     nombre_amigo = input("Indicame el nombre de quien deseas ver el estado: ")
+#     if os.path.isfile(nombre_amigo + ".user"):
+#         with open(nombre_amigo + ".user", "r") as file_obj:
+#             lineas = file_obj.readlines()
+#             if lineas:
+#                 ultimo_estado = lineas[-1].strip()
+#                 return ultimo_estado
+#             else:
+#                 return "El usuario aún no ha agregado ningún estado a en su cuenta"
+
+def mostrar_estados_amigos(lista_amigos):
+  for amigo in lista_amigos:
+    archivo = open(amigo+".user", "r")
+    for i in range(7):
+      linea = archivo.readline().rstrip()
+    print(amigo+":", linea)
+    archivo.close()
