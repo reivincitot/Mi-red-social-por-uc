@@ -48,8 +48,9 @@ def mostrar_perfil(nombre, edad, estatura_m, estatura_cm, sexo, pais, amigos):
     print("Edad:     ", edad, "aÃ±os")
     print("Estatura: ", estatura_m, "m y ", estatura_cm, "centÃ­metros")
     print("Sexo:     ", sexo)
-    print("PaÃ­s:     ", pais)
+    print("PaÃ­s:    ", pais)
     print("Amigos:   ", len(amigos))
+    print("Lista de amigos: ",amigos)
     print("--------------------------------------------------")
 
 def opcion_menu():
@@ -136,8 +137,7 @@ def escribir_usuario(nombre, edad, estatura_m, estatura_cm, sexo, pais, amigos, 
     #Una vez que hemos escrito todos los datos del usuario en el archivo, no debemos olvidar cerrarlo
     archivo_usuario.close()
 
-def agregar_amigos():
+def agregar_amigos(leer_usuario):
     add_friend = input("Indicame el nombre de la persona que deseas agregar: ")
-    add_friend= add_friend.rstrip()
-    obtener_lista_amigos().append(add_friend)
-    return obtener_lista_amigos   
+    add_friend = add_friend.rstrip()
+    return add_friend

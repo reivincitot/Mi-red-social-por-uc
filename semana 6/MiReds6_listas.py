@@ -1,23 +1,3 @@
-# Hola
-# Ahora que ya conocemos como utilizar listas, podemos agregar una funcionalidad mucho mÃ¡s interesante
-# a nuestra red social, y que nos hacÃ­a falta: administrar listas de amigos y de mensajes
-
-# Hemos agregado dos valores nuevos para el perfil del usuario: una lista de amigos, y una lista de mensajes
-# que llamaremos "muro"
-
-# La lista de mensajes reemplazarÃ¡ a nuestro antiguo valor "num_amigos". Al conocer la lista de amigos,
-# tambiÃ©n conoceremos la cantidad de amigos. Observa cÃ³mo leemos la lista de amigos en la funciÃ³n
-# obtener_lista_amigos.
-# Observa tambiÃ©n como se han modificado las funciones leer_archivo() y escribir_archivo()
-# para ser concordantes con la nueva estructura de los archivos ".user"
-
-# La segunda caracterÃ­stica serÃ¡ la publicaciÃ³n de un muro.
-# En el archivo de cada usuario, luego de escribir su estado actual, agregaremos una lista de los mensajes
-# que han sido publicados por sus amigos, de manera de formar una lista de mensajes que llamaremos "muro", o 'timeline',
-# presente en casi todas las redes sociales.
-
-
-# En este mÃ³dulo estÃ¡n todos las funciones  que hemos creado hasta ahora
 import S6Red as Red
 
 
@@ -69,7 +49,8 @@ while opcion != 0:
         Red.mostrar_perfil(nombre, edad, estatura_m,
                            estatura_cm, sexo, pais, amigos)
     elif opcion == 5:
-        Red.agregar_amigos()
+       add_friend = Red.agregar_amigos(amigos)
+       amigos.append(add_friend)
     elif opcion == 6:
         pass
 
